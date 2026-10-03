@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Booking.css";
+import { useNavigate } from "react-router-dom";
 
 const parkingLots = [
   {
@@ -25,6 +26,7 @@ const parkingLots = [
 
 function Booking() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const parking = parkingLots.find(
     (item) => item.id === Number(id)
@@ -168,9 +170,8 @@ function Booking() {
     ])
   );
 
-  alert("Parking booked successfully!");
-
-  window.location.href = "/my-bookings";
+alert("Parking booked successfully!");
+navigate("/my-bookings");
 }}
         >
           Confirm Booking
