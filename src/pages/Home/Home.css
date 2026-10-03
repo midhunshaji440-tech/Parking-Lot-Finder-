@@ -1,0 +1,277 @@
+.home {
+  min-height: 100vh;
+  background: #f6f8fb;
+}
+
+.hero-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0f172a, #1e3a5f);
+  color: white;
+}
+
+.hero-content {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.hero-small-text {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.hero-section h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-section h1 span {
+  color: #60a5fa;
+}
+
+.hero-description {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #dbeafe;
+}
+
+
+.search-box {
+  display: flex;
+  max-width: 700px;
+  margin-top: 35px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 14px;
+  font-size: 16px;
+}
+
+.search-box button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 0 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: #1d4ed8;
+}
+
+
+.parking-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-label {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.map-button {
+  border: 1px solid #2563eb;
+  background: white;
+  color: #2563eb;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-buttons button {
+  border: 1px solid #d1d5db;
+  background: white;
+  padding: 9px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.filter-buttons .active-filter {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+
+.parking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.parking-card {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  transition: 0.2s;
+}
+
+.parking-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.parking-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.parking-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.parking-card p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.status-badge {
+  background: #dcfce7;
+  color: #15803d;
+  height: fit-content;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+
+.parking-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.parking-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.parking-info small {
+  color: #9ca3af;
+}
+
+.parking-info strong {
+  font-size: 15px;
+}
+
+
+.details-button {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  border: none;
+  background: #111827;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.details-button:hover {
+  background: #2563eb;
+}
+
+
+
+.no-results {
+  text-align: center;
+  padding: 50px;
+  grid-column: 1 / -1;
+}
+
+
+@media (max-width: 768px) {
+
+  .hero-section {
+    padding: 60px 20px;
+  }
+
+  .hero-section h1 {
+    font-size: 38px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .search-box {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search-box button {
+    padding: 12px;
+  }
+
+  .section-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .parking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parking-info {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.map-button {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.details-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}

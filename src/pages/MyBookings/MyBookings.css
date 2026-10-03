@@ -1,0 +1,129 @@
+.bookings-page {
+  min-height: 100vh;
+  background: #f6f8fb;
+  padding: 50px 20px;
+}
+
+.bookings-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.bookings-header {
+  margin-bottom: 30px;
+}
+
+.bookings-header p {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.bookings-header h1 {
+  margin: 5px 0;
+  font-size: 36px;
+}
+
+.empty-bookings {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.empty-bookings h2 {
+  margin-bottom: 8px;
+}
+
+.empty-bookings p {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.find-parking-button {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.booking-status {
+  display: inline-block;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.booking-item h2 {
+  margin: 12px 0;
+}
+
+.booking-item p {
+  margin: 6px 0;
+  color: #6b7280;
+}
+
+.booking-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.booking-price small {
+  color: #9ca3af;
+}
+
+.booking-price strong {
+  font-size: 25px;
+}
+
+@media (max-width: 600px) {
+  .bookings-page {
+    padding: 30px 15px;
+  }
+
+  .bookings-header h1 {
+    font-size: 30px;
+  }
+
+  .booking-item {
+    flex-direction: column;
+  }
+
+  .booking-price {
+    align-items: flex-start;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 15px;
+  }
+}
