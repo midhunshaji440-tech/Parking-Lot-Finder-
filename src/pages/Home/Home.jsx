@@ -33,10 +33,17 @@ const parkingLots = [
 ];
 
 function Home() {
+
+  const availability =
+    JSON.parse(localStorage.getItem("parkingAvailability") || "{}");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
   const filteredParking = parkingLots
+
+
+
+  
     .filter((parking) => {
       const searchText =
         `${parking.name} ${parking.location}`.toLowerCase();
@@ -45,8 +52,8 @@ function Home() {
     })
     .filter((parking) => {
       if (filter === "available") {
-        return parking.available > 0;
-      }
+  return (availability[parking.id] ?? parking.available) > 0;
+           }
 
       if (filter === "price") {
         return parking.price <= 30;
@@ -149,7 +156,6 @@ function Home() {
           </button>
 
         </div>
-=
         <div className="parking-grid">
 
           {filteredParking.length > 0 ? (
@@ -172,8 +178,8 @@ function Home() {
                   </div>
 
                   <span className="status-badge">
-                    {parking.available} spots
-                  </span>
+             {availability[parking.id] ?? parking.available} spots
+                    </span>
 
                 </div>
 
@@ -196,8 +202,8 @@ function Home() {
                   <div>
                     <small>Capacity</small>
                     <strong>
-                      {parking.available}/{parking.total}
-                    </strong>
+                     {availability[parking.id] ?? parking.available}/{parking.total}
+                      </strong>
                   </div>
 
                 </div>

@@ -37,6 +37,10 @@ const parkingLots = [
 ];
 
 function Map() {
+
+  const availability =
+    JSON.parse(localStorage.getItem("parkingAvailability")) || {};
+
   return (
     <div className="map-page">
 
@@ -79,9 +83,12 @@ function Map() {
                   💰 ₹{parking.price}/hour
                 </p>
 
-                <p>
-                  🅿️ {parking.available} spots available
-                </p>
+
+   <p>
+  🅿️ {
+    availability[parking.id] ?? parking.available
+  } spots available
+     </p> 
 
              <Link
              to={`/parking/${parking.id}`}

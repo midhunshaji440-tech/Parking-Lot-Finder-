@@ -68,11 +68,50 @@ function MyBookings() {
                 </div>
 
                 <div className="booking-price">
-                  <small>Total</small>
-                  <strong>
-                    ₹{booking.total}
-                  </strong>
-                </div>
+  <small>Total</small>
+
+  <strong>
+    ₹{booking.total}
+  </strong>
+
+  <button
+    className="cancel-button"
+    onClick={() => {
+      const confirmCancel = window.confirm(
+        "Are you sure you want to cancel this booking?"
+      );
+
+      if (!confirmCancel) {
+        return;
+      }
+      
+      const updatedBookings = bookings.filter(
+        (item) => item.id !== booking.id
+      );
+
+      localStorage.setItem(
+        "parkingBookings",
+        JSON.stringify(updatedBookings)
+      );
+
+      const availability = JSON.parse(
+        localStorage.getItem("parkingAvailability") || "{}"
+      );
+
+      availability[booking.parkingId] =
+        (availability[booking.parkingId] ?? 0) + 1;
+
+      localStorage.setItem(
+        "parkingAvailability",
+        JSON.stringify(availability)
+      );
+
+      window.location.reload();
+    }}
+  >
+    Cancel Booking
+  </button>
+</div>
 
               </div>
             ))}

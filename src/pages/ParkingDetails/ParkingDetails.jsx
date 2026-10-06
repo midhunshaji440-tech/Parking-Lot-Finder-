@@ -40,6 +40,11 @@ function ParkingDetails() {
   const parking = parkingLots.find(
     (item) => item.id === Number(id)
   );
+  const availability =
+  JSON.parse(localStorage.getItem("parkingAvailability")) || {};
+
+const availableSpots =
+  availability[parking?.id] ?? parking?.available ?? 0;
 
   if (!parking) {
     return (
@@ -72,7 +77,7 @@ function ParkingDetails() {
           </div>
 
           <span className="available-badge">
-            {parking.available} spots available
+       {availableSpots} spots available
           </span>
         </div>
 
@@ -90,8 +95,8 @@ function ParkingDetails() {
 
           <div>
             <small>Capacity</small>
-            <strong>
-              {parking.available}/{parking.total}
+           <strong>
+             {availableSpots}/{parking.total}
             </strong>
           </div>
 

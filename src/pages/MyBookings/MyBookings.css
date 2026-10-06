@@ -127,3 +127,17 @@
     padding-top: 15px;
   }
 }
+.cancel-button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #dc2626;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background: #b91c1c;
+}

@@ -27,26 +27,40 @@
   overflow: hidden;
 }
 
+.popup-content {
+  width: 260px;
+  padding: 5px;
+  font-family: Arial, sans-serif;
+}
+
 .popup-content h3 {
-  margin-bottom: 8px;
-  font-size: 18px;
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #111827;
 }
 
 .popup-content p {
-  margin: 5px 0;
+  margin: 7px 0;
+  color: #6b7280;
+  font-size: 14px;
 }
 
-.popup-content button {
-  margin-top: 8px;
-  border: none;
+.popup-details-button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 14px;
+  padding: 10px 12px;
   background: #2563eb;
   color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
-.popup-content button:hover {
+.popup-details-button:hover {
   background: #1d4ed8;
 }
 
@@ -62,19 +76,8 @@
   .parking-map {
     height: 500px;
   }
-}
-.popup-details-button {
-  display: block;
-  margin-top: 8px;
-  background: #2563eb;
-  color: rgb(251, 251, 251);
-  padding: 8px 12px;
-  border-radius: 6px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-}
 
-.popup-details-button:hover {
-  background: #1d4ed8;
+  .popup-content {
+    width: 220px;
+  }
 }
