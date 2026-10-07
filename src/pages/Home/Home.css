@@ -275,3 +275,40 @@
   text-align: center;
   text-decoration: none;
 }
+.location-container {
+  margin-top: 15px;
+}
+
+.location-button {
+  padding: 12px 20px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background: white;
+  color: #2563eb;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.location-button:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.location-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.location-success {
+  color: #16a34a;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.location-error {
+  color: #dc2626;
+  margin-top: 8px;
+  font-size: 14px;
+}

@@ -7,27 +7,73 @@ import Booking from "./pages/Booking/Booking";
 import Navbar from "./components/Navbar/Navbar";
 import MyBookings from "./pages/MyBookings/MyBookings";
 
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
+
 function App() {
   return (
     <BrowserRouter>
 
-      <Navbar />
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/map" element={<Map />} />
+
+        {/* Sign In - First Page */}
+        <Route path="/" element={<SignIn />} />
+
+        {/* Authentication */}
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+
+        {/* Main Website */}
+        <Route
+          path="/home"
+          element={
+            <>
+              <Navbar />
+              <Home />
+            </>
+          }
+        />
+
+        <Route
+          path="/map"
+          element={
+            <>
+              <Navbar />
+              <Map />
+            </>
+          }
+        />
+
         <Route
           path="/parking/:id"
-          element={<ParkingDetails />}
+          element={
+            <>
+              <Navbar />
+              <ParkingDetails />
+            </>
+          }
         />
+
         <Route
           path="/booking/:id"
-          element={<Booking />}
+          element={
+            <>
+              <Navbar />
+              <Booking />
+            </>
+          }
         />
+
         <Route
           path="/my-bookings"
-          element={<MyBookings />}
+          element={
+            <>
+              <Navbar />
+              <MyBookings />
+            </>
+          }
         />
+
       </Routes>
 
     </BrowserRouter>

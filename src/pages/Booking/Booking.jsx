@@ -237,8 +237,8 @@ function Booking() {
                 {successMessage}
               </p>
 
-              <span>
-                Redirecting to the map...
+              <span> 
+                 Redirecting to My Bookings...
               </span>
 
             </div>
@@ -246,7 +246,6 @@ function Booking() {
           </div>
         )}
 
-        {/* Confirm Button */}
 
         <button
           className="confirm-button"
@@ -330,9 +329,9 @@ function Booking() {
               "Your parking spot has been booked successfully!"
             );
 
-            setTimeout(() => {
-              navigate("/map");
-            }, 1500);
+         setTimeout(() => {
+             navigate("/my-bookings");
+           }, 1500);
 
           }}
         >

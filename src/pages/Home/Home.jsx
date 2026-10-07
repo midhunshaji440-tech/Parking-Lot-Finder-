@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import FilterBar from "../../components/FilterBar/FilterBar";
 
 const parkingLots = [
   {
@@ -33,27 +34,73 @@ const parkingLots = [
 ];
 
 function Home() {
+  const availability = JSON.parse(
+    localStorage.getItem("parkingAvailability") || "{}"
+  );
 
-  const availability =
-    JSON.parse(localStorage.getItem("parkingAvailability") || "{}");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
+  const [location, setLocation] = useState(null);
+  const [locationLoading, setLocationLoading] = useState(false);
+  const [locationError, setLocationError] = useState("");
+
+  const getCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      setLocationError(
+        "Geolocation is not supported by your browser."
+      );
+      return;
+    }
+
+    setLocationLoading(true);
+    setLocationError("");
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+
+        setLocationLoading(false);
+      },
+      (error) => {
+        setLocationLoading(false);
+
+        if (error.code === error.PERMISSION_DENIED) {
+          setLocationError("Location permission was denied.");
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          setLocationError("Location information is unavailable.");
+        } else if (error.code === error.TIMEOUT) {
+          setLocationError("Location request timed out.");
+        } else {
+          setLocationError("Unable to get your location.");
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      }
+    );
+  };
+
+  // Search + filter
   const filteredParking = parkingLots
-
-
-
-  
     .filter((parking) => {
       const searchText =
         `${parking.name} ${parking.location}`.toLowerCase();
 
       return searchText.includes(search.toLowerCase());
     })
+
     .filter((parking) => {
       if (filter === "available") {
-  return (availability[parking.id] ?? parking.available) > 0;
-           }
+        return (
+          availability[parking.id] ?? parking.available
+        ) > 0;
+      }
 
       if (filter === "price") {
         return parking.price <= 30;
@@ -61,6 +108,7 @@ function Home() {
 
       return true;
     })
+
     .sort((a, b) => {
       if (filter === "nearest") {
         return a.distance - b.distance;
@@ -72,6 +120,7 @@ function Home() {
   return (
     <div className="home">
 
+      {/* HERO SECTION */}
       <section className="hero-section">
         <div className="hero-content">
 
@@ -90,6 +139,7 @@ function Home() {
             compare prices and book your spot easily.
           </p>
 
+          {/* SEARCH */}
           <div className="search-box">
             <input
               type="text"
@@ -103,9 +153,37 @@ function Home() {
             </button>
           </div>
 
+          {/* CURRENT LOCATION */}
+          <div className="location-container">
+
+            <button
+              className="location-button"
+              onClick={getCurrentLocation}
+              disabled={locationLoading}
+            >
+              {locationLoading
+                ? "📍 Getting Location..."
+                : "📍 Use My Location"}
+            </button>
+
+            {location && (
+              <p className="location-success">
+                📍 Location detected successfully
+              </p>
+            )}
+
+            {locationError && (
+              <p className="location-error">
+                {locationError}
+              </p>
+            )}
+
+          </div>
+
         </div>
       </section>
 
+      {/* PARKING SECTION */}
       <section className="parking-section">
 
         <div className="section-header">
@@ -120,42 +198,22 @@ function Home() {
             </h2>
           </div>
 
-       <Link to="/map" className="map-button">
-      🗺️ View Map
-      </Link>
+          <Link
+            to="/map"
+            className="map-button"
+          >
+            🗺️ View Map
+          </Link>
+
         </div>
 
-        <div className="filter-buttons">
+        {/* FILTER BAR */}
+        <FilterBar
+          filter={filter}
+          setFilter={setFilter}
+        />
 
-          <button
-            className={filter === "all" ? "active-filter" : ""}
-            onClick={() => setFilter("all")}
-          >
-            All
-          </button>
-
-          <button
-            className={filter === "available" ? "active-filter" : ""}
-            onClick={() => setFilter("available")}
-          >
-            Available
-          </button>
-
-          <button
-            className={filter === "price" ? "active-filter" : ""}
-            onClick={() => setFilter("price")}
-          >
-            Under ₹30
-          </button>
-
-          <button
-            className={filter === "nearest" ? "active-filter" : ""}
-            onClick={() => setFilter("nearest")}
-          >
-            Nearest
-          </button>
-
-        </div>
+        {/* PARKING CARDS */}
         <div className="parking-grid">
 
           {filteredParking.length > 0 ? (
@@ -178,8 +236,9 @@ function Home() {
                   </div>
 
                   <span className="status-badge">
-             {availability[parking.id] ?? parking.available} spots
-                    </span>
+                    {availability[parking.id] ??
+                      parking.available} spots
+                  </span>
 
                 </div>
 
@@ -187,6 +246,7 @@ function Home() {
 
                   <div>
                     <small>Price</small>
+
                     <strong>
                       ₹{parking.price}/hr
                     </strong>
@@ -194,6 +254,7 @@ function Home() {
 
                   <div>
                     <small>Distance</small>
+
                     <strong>
                       {parking.distance} km
                     </strong>
@@ -201,19 +262,23 @@ function Home() {
 
                   <div>
                     <small>Capacity</small>
+
                     <strong>
-                     {availability[parking.id] ?? parking.available}/{parking.total}
-                      </strong>
+                      {availability[parking.id] ??
+                        parking.available}
+                      /{parking.total}
+                    </strong>
                   </div>
 
                 </div>
 
-            <Link
-           to={`/parking/${parking.id}`}
-          className="details-button"
-                                    >
-                   View Details
-                      </Link>
+                <Link
+                  to={`/parking/${parking.id}`}
+                  className="details-button"
+                >
+                  View Details
+                </Link>
+
               </div>
 
             ))
@@ -221,11 +286,15 @@ function Home() {
           ) : (
 
             <div className="no-results">
-              <h3>No parking found</h3>
+
+              <h3>
+                No parking found
+              </h3>
 
               <p>
                 Try another area or filter.
               </p>
+
             </div>
 
           )}

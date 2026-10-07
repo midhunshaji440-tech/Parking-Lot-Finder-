@@ -11,7 +11,7 @@ function Navbar() {
         </Link>
 
         <div className="navbar-links">
-          <Link to="/">Home</Link>
+         <Link to="/home">Home</Link>
           <Link to="/map">Map</Link>
           <Link to="/my-bookings">My Bookings</Link>
         </div>
